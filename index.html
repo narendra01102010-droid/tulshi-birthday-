@@ -11,8 +11,7 @@ body{
  font-family:'Segoe UI';
  background:linear-gradient(to bottom,#87CEEB,#cce7ff);
  color:white;
- text-align:center;
- overflow:auto;
+ text-align:center;
 }
 
 /* LOGIN */
@@ -224,7 +223,45 @@ setInterval(()=>{
  ctx.fillRect(Math.random()*c.width,Math.random()*c.height,4,4);
 },100);
 
+<script>
+function enterSite(){
+  document.getElementById("login").style.display = "none";
+  document.getElementById("main").style.display = "block";
+}
 </script>
+<div id="main" style="display:none;">
+  
+  <h1>Welcome Tulshi ❤️</h1>
 
+  <p class="section">
+    You are the most special person in my life 💙  
+    This website is only for you 💖
+  </p>
+
+  <button onclick="openLetter()">Open Letter 💌</button>
+
+  <div id="letter">
+    <p>I love you forever ❤️</p>
+    <button onclick="closeLetter()">Close</button>
+  </div>
+
+</div><div id="main" style="display:none;">
+ 
+  <h1>Welcome Tulshi ❤️</h1>
+
+  <p class="section">
+    You are the most special person in my life 💙  
+    This website is only for you 💖
+  </p>
+
+  <button onclick="openLetter()">Open
+ Letter 💌</button>
+
+  <div id="letter">
+    <p>I love you forever ❤️</p>
+    <button onclick="closeLetter()">Close</button>
+  </div>
+
+</div>
 </body>
 </html>
