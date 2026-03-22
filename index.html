@@ -8,10 +8,10 @@
 <style>
 body{
  margin:0;
- font-family:'Segoe UI';
+ font-family:'Segoe UI', sans-serif;
  background:linear-gradient(to bottom,#87CEEB,#cce7ff);
  color:white;
- text-align:center;
+ text-align:center;
 }
 
 /* LOGIN */
@@ -24,12 +24,15 @@ body{
  flex-direction:column;
  justify-content:center;
  align-items:center;
+ z-index:10;
 }
+
 input{
  padding:12px;
  border-radius:10px;
  border:none;
 }
+
 button{
  padding:12px 25px;
  border:none;
@@ -37,22 +40,32 @@ button{
  background:#00bfff;
  color:white;
  margin-top:10px;
- font-size:16px;
+ cursor:pointer;
 }
 
 /* MAIN */
-#main{display:block;height:100vh;overflow:auto;scroll-behavior:smooth;}
+#main{
+ display:none;
+ height:100vh;
+ overflow:auto;
+ scroll-behavior:smooth;
+}
 
 h1{
  margin-top:40px;
  animation:glow 2s infinite alternate;
 }
+
 @keyframes glow{
- from{text-shadow:0 0 10px white;}
- to{text-shadow:0 0 30px #00bfff;}
+ from{ text-shadow:0 0 10px white; }
+ to{ text-shadow:0 0 30px #00bfff; }
 }
 
-.section{margin:50px;font-size:20px;line-height:1.6}
+.section{
+ margin:50px;
+ font-size:20px;
+ line-height:1.6;
+}
 
 /* HEART */
 .heart{
@@ -60,7 +73,9 @@ h1{
  bottom:-10px;
  animation:up 6s linear infinite;
 }
-@keyframes up{to{transform:translateY(-100vh);}}
+@keyframes up{
+ to{ transform:translateY(-100vh); }
+}
 
 /* FLOWER */
 .flower{
@@ -68,7 +83,9 @@ h1{
  top:-10px;
  animation:fall 8s linear infinite;
 }
-@keyframes fall{to{transform:translateY(100vh);}}
+@keyframes fall{
+ to{ transform:translateY(100vh); }
+}
 
 /* GALLERY */
 .gallery img{
@@ -90,15 +107,22 @@ h1{
  padding:20px;
  border-radius:15px;
  width:80%;
+ z-index:20;
 }
 
 /* CONFETTI */
-canvas{position:fixed;top:0;left:0;}
+canvas{
+ position:fixed;
+ top:0;
+ left:0;
+ z-index:-1;
+}
 </style>
 </head>
 
 <body>
 
+<!-- LOGIN -->
 <div id="login">
 <h2>💙 For Tulshi 💙</h2>
 <p>Enter Secret Password ❤️</p>
@@ -106,9 +130,10 @@ canvas{position:fixed;top:0;left:0;}
 <button onclick="enter()">Enter 💖</button>
 </div>
 
+<!-- MAIN -->
 <div id="main">
 
-<h1>🎉 Happy Birthday Tulshi Newar ❤️ 🎂</h1>
+<h1>🎉 Happy Birthday Tulshi ❤️🎂</h1>
 
 <div class="section">
 <p id="typing"></p>
@@ -116,9 +141,9 @@ canvas{position:fixed;top:0;left:0;}
 
 <div class="section">
 <h2>💙 My Nepali Queen 💙</h2>
-<p>तिमी मेरो जीवनको सबैभन्दा सुन्दर उपहार हौ ❤️</p>
-<p>म सधैं तिमीलाई माया गर्नेछु 💙</p>
-<p>तिमी सधैं खुशी रहनु 😊</p>
+<p>तिमी मेरो जीवनको सबैभन्दा सुन्दर उपहार हो ❤️</p>
+<p>म सधैं तिमीलाई माया गर्छु 💙</p>
+<p>तिमी सधैं खुशी रहु 😊</p>
 </div>
 
 <div class="section gallery">
@@ -136,27 +161,28 @@ canvas{position:fixed;top:0;left:0;}
 
 <div class="section">
 <h2>📖 Our Story</h2>
-<p>It started 4 months ago… 💙</p>
+<p>It started 4 months ago... 💙</p>
 <p>Now you are my happiness ❤️</p>
 <p>And I want this forever 💫</p>
 </div>
 
 </div>
 
+<!-- LETTER -->
 <div id="letter">
 <h3>💌 My Love</h3>
 <p>
-Happy Birthday Madam Jii ❤️  
-You are my sky blue happiness 💙  
-I promise to always respect and care for you ❤️  
+Happy Birthday Madam Jii ❤️ <br>
+You are my sky blue happiness 💙 <br>
+I promise to always respect and care for you ❤️
 </p>
 <button onclick="closeLetter()">Close</button>
 </div>
 
-<!-- YOUTUBE MUSIC -->
-<iframe id="yt" width="0" height="0"
-src="https://www.youtube.com/embed/2Vv-BfVoq4g?autoplay=1&loop=1&playlist=2Vv-BfVoq4g"
-allow="autoplay"></iframe>
+<!-- MUSIC -->
+<iframe width="0" height="0"
+src="https://www.youtube.com/embed/2Vv-BfVoq4g?autoplay=1&mute=1&loop=1&playlist=2Vv-BfVoq4g">
+</iframe>
 
 <canvas id="confetti"></canvas>
 
@@ -164,22 +190,24 @@ allow="autoplay"></iframe>
 
 // LOGIN
 function enter(){
- if(document.getElementById("pass").value==="madamjii"){
-  document.getElementById("login").style.display="none";
-  document.getElementById("main").style.display="block";
+ if(document.getElementById("pass").value === "madamji"){
+   document.getElementById("login").style.display = "none";
+   document.getElementById("main").style.display = "block";
+   type();
  }
 }
 
 // TYPEWRITER
-let txt="Tulshi… you changed my life in just 4 months 💙 Even from far away, I feel you in my heart ❤️";
-let i=0;
+let txt = "Tulshi… you changed my life in just 4 months 💙 Even from far away, I feel you in my heart ❤️";
+let i = 0;
+
 function type(){
- if(i<txt.length){
-  document.getElementById("typing").innerHTML+=txt[i++];
-  setTimeout(type,40);
+ if(i < txt.length){
+   document.getElementById("typing").innerHTML += txt.charAt(i);
+   i++;
+   setTimeout(type,40);
  }
 }
-type();
 
 // HEARTS
 setInterval(()=>{
@@ -202,8 +230,12 @@ setInterval(()=>{
 },500);
 
 // LETTER
-function openLetter(){document.getElementById("letter").style.display="block";}
-function closeLetter(){document.getElementById("letter").style.display="none";}
+function openLetter(){
+ document.getElementById("letter").style.display="block";
+}
+function closeLetter(){
+ document.getElementById("letter").style.display="none";
+}
 
 // LOVE BUTTON
 function showLove(){
@@ -213,51 +245,19 @@ function showLove(){
 // CONFETTI
 let c=document.getElementById("confetti");
 let ctx=c.getContext("2d");
+
 c.width=window.innerWidth;
 c.height=window.innerHeight;
 
 setInterval(()=>{
  ctx.fillStyle="rgba(0,0,0,0.05)";
  ctx.fillRect(0,0,c.width,c.height);
+
  ctx.fillStyle="white";
  ctx.fillRect(Math.random()*c.width,Math.random()*c.height,4,4);
 },100);
 
-<script>
-function enterSite(){
-  document.getElementById("login").style.display = "none";
-  document.getElementById("main").style.display = "block";
-}
 </script>
-<div id="main" style="display:none;">
-  
-  <h1>Welcome Tulshi ❤️</h1>
 
-  <p class="section">
-    You are the most special person in my life 💙  
-    This website is only for you 💖
-  </p>
-
-  <button onclick="openLetter()">Open Letter 💌</button>
-
-  <div id="letter">
-    <p>I love you forever ❤️</p>
-    <button onclick="closeLetter()">Close</button>
-  </div>
-
-</div><div id="main" style="display:none;">
- 
-  <h1>Welcome Tulshi ❤️</h1>
-
-  <p class="section">
-    You are the most special person in my life 💙  
-    This website is only for you 💖
-  </p>
-
-  <button onclick="openLetter()">Open
- Letter 💌</button>
-
-  <div id="letter">
-    <p>I love you forever ❤️</p>
-    <button onclick="closeLetter()">Close</button>
-  </div>
+</body>
+</html>
